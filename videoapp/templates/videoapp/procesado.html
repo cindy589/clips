@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Procesado</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Video Procesado</h1>
+    <video controls>
+        <source src="{{ clip_path }}" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+    <p><a href="{{ subtitles }}">Descargar subtítulos</a></p>
+</body>
+</html>
