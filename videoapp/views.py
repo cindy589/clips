@@ -58,16 +58,17 @@ def agregar_subtitulos(video_path, srt_path, output_video):
     video = VideoFileClip(video_path)
     subs = []
     font_path = "/path/to/your/font.ttf"  # Cambia esta ruta a la ubicación de tu fuente
+
     with open(srt_path, "r") as f:
         subtitles = list(srt.parse(f.read()))
         for subtitle in subtitles:
             words = subtitle.content.split()
             word_clips = []
             for i, word in enumerate(words):
-                txt_clip = TextClip(word, fontsize=24, font=font_path, color='white', method='caption')
+                txt_clip = TextClip(word, fontsize=24, font=font_path, color='white', bg_color='green', method='caption')
                 txt_clip = txt_clip.set_start(subtitle.start.total_seconds() + i * (subtitle.end.total_seconds() - subtitle.start.total_seconds()) / len(words))
-                txt_clip = txt_clip.set_end(subtitle.start.total_seconds() + (i + 1) * (subtitle.end.total_seconds()) / len(words))
-                txt_clip = txt_clip.set_pos('center')  # Cambia la posición a 'center'
+                txt_clip = txt_clip.set_end(subtitle.start.total_seconds() + (i + 1) * (subtitle.end.total_seconds() - subtitle.start.total_seconds()) / len(words))
+                txt_clip = txt_clip.set_pos(('center', 'bottom'))
                 word_clips.append(txt_clip)
             subs.extend(word_clips)
 
